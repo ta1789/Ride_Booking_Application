@@ -22,9 +22,8 @@ export default function Signup() {
             alert("Enter Valid Credentials")
         }
         if(js.success){
-            localStorage.setItem("authToken",js.authToken)
             localStorage.setItem("userEmail",credentials.email)
-            console.log(localStorage.getItem("authToken"))
+            
             navigate("/") 
         }
     }

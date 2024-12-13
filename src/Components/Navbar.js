@@ -6,7 +6,7 @@ export default function Navbar() {
     const navigate=useNavigate();
     const handleClickev=async(e)=>{
         e.preventDefault();
-        localStorage.removeItem("authToken");
+        localStorage.removeItem("userEmail");
         navigate('/Login');
     }
     return (
@@ -22,14 +22,14 @@ export default function Navbar() {
                             <li className="nav-item">
                                 <Link className="nav-link active Home1 fs-3" aria-current="page" to="/">Home</Link>
                             </li>
-                            {(localStorage.getItem("authToken"))?
+                            {(localStorage.getItem("userEmail"))?
                                 <li className="nav-item">
                                     <Link className="nav-link active Home1 btn bg-dark text-light" aria-current="page" to="/MyOrder">My Trips</Link>
                                 </li>
                             :""
                             }
                         </ul>
-                        {(!localStorage.getItem("authToken"))?
+                        {(!localStorage.getItem("userEmail"))?
                             <div className='d-flex'>    
                                 <Link className="btn text-white fs-5 mx-2 p-1" style={{background:'#3F51B5'}}   to="/Signup">Signup</Link>
                                 <Link className=" btn text-white fs-5 mx-2 p-1" style={{background:'#3F51B5'}}  to="/Login">Login</Link>
