@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./Backend   # Path to the backend folder
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"  # Map Flask's port 5000 to host
+    volumes:
+      - ./Backend:/app  # Mount local backend files for development
+    environment:
+      - FLASK_ENV=development
+      - MONGO_URI=mongodb+srv://anshu12:anshu12@cluster0.uspga.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0  # MongoDB connection URI
+    depends_on:
+      - mongo  # Ensure MongoDB starts before the backend
+
+  frontend:
+    build:
+      context: ./Bookings   # Path to the frontend folder
+      dockerfile: dockerfile
+    ports:
+      - "3000:3000"  # Map React's port 3000 to host
+    depends_on:
+      - backend  # Ensure backend runs before the frontend
+
+  mongo:
+    image: mongo:5.0  # Use official MongoDB image
+    ports:
+      - "27017:27017"  # Expose MongoDB port
+    volumes:
+      - mongo-data:/data/db  # Persist MongoDB data in a named volume
+
+volumes:
+  mongo-data:
+    driver: local
