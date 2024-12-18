@@ -1,0 +1,6 @@
+{
+  "test_app.py::test_get_data": true,
+  "test_app.py::test_login_user_success": true,
+  "test_app.py::test_login_user_failure": true,
+  "test_app.py::test_execute_payment": true
+}
